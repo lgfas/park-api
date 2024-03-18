@@ -23,7 +23,7 @@ public class Usuario implements Serializable {
     private String password;
     @Column(name = "role", nullable = false, length = 25)
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role = Role.ROLE_CLIENTE;
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
     @Column(name = "data_modificacao")
