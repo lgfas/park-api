@@ -1,4 +1,4 @@
-package com.lgfas.parkapi.web.controller.dto;
+package com.lgfas.parkapi.web.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

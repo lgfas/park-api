@@ -1,8 +1,8 @@
-package com.lgfas.parkapi.web.controller.dto.mapper;
+package com.lgfas.parkapi.web.dto.mapper;
 
 import com.lgfas.parkapi.entity.Usuario;
-import com.lgfas.parkapi.web.controller.dto.UsuarioCreateDto;
-import com.lgfas.parkapi.web.controller.dto.UsuarioResponseDto;
+import com.lgfas.parkapi.web.dto.UsuarioCreateDto;
+import com.lgfas.parkapi.web.dto.UsuarioResponseDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
