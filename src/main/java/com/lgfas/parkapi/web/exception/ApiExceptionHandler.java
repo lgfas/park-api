@@ -1,5 +1,6 @@
 package com.lgfas.parkapi.web.exception;
 
+import com.lgfas.parkapi.exception.EntityNotFoundException;
 import com.lgfas.parkapi.exception.UsernameUniqueViolationException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -27,12 +28,22 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(UsernameUniqueViolationException.class)
-    public ResponseEntity<ErrorMessage> methodArgumentNotValidException (RuntimeException ex,
+    public ResponseEntity<ErrorMessage> uniqueViolationException (RuntimeException ex,
                                                                          HttpServletRequest request) {
         log.error("Api Error - ", ex);
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(new ErrorMessage(request, HttpStatus.CONFLICT, ex.getMessage()));
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorMessage> entityNotFoundException (RuntimeException ex,
+                                                                         HttpServletRequest request) {
+        log.error("Api Error - ", ex);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new ErrorMessage(request, HttpStatus.NOT_FOUND, ex.getMessage()));
     }
 }

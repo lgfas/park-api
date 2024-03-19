@@ -1,6 +1,7 @@
 package com.lgfas.parkapi.service;
 
 import com.lgfas.parkapi.entity.Usuario;
+import com.lgfas.parkapi.exception.EntityNotFoundException;
 import com.lgfas.parkapi.exception.UsernameUniqueViolationException;
 import com.lgfas.parkapi.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class UsuarioService {
     @Transactional(readOnly = true)
     public Usuario buscarPorId(Long id) {
         return usuarioRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Usuário não encontrado.")
+                () -> new EntityNotFoundException(String.format("Usuário id=%s não encontrado.", id))
         );
     }
 
