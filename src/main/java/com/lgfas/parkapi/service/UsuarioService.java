@@ -2,6 +2,7 @@ package com.lgfas.parkapi.service;
 
 import com.lgfas.parkapi.entity.Usuario;
 import com.lgfas.parkapi.exception.EntityNotFoundException;
+import com.lgfas.parkapi.exception.PasswordInvalidException;
 import com.lgfas.parkapi.exception.UsernameUniqueViolationException;
 import com.lgfas.parkapi.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,13 +39,13 @@ public class UsuarioService {
     public Usuario editarSenha(Long id, String senhaAtual, String novaSenha, String confirmaSenha) {
 
         if (!novaSenha.equals(confirmaSenha)) {
-            throw new RuntimeException("Nova senha não confere com confirmação senha.");
+            throw new PasswordInvalidException("Nova senha não confere com confirmação senha.");
         }
 
         Usuario user = buscarPorId(id);
 
         if (!user.getPassword().equals(senhaAtual)) {
-            throw new RuntimeException("Sua senha não confere.");
+            throw new PasswordInvalidException("Sua senha não confere.");
         }
 
         user.setPassword(novaSenha);
